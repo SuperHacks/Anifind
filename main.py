@@ -1,8 +1,13 @@
 from flask import Flask
 from flask import Blueprint
-from dotenv import load_dotenv
 from flask import request, redirect, url_for, session, render_template
-print("This Worked")
+from src.mal_api import MAL
+
+api = MAL()
+params = ["title","synopsis","genres","related_anime"]
+# Cowboy Bebop is ID: 1
+print(api.request(1,params))
+
 
 views = Blueprint(__name__, "views")
 
