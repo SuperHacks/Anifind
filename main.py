@@ -4,7 +4,7 @@ import secrets
 from src.mal_api import MAL
 
 api = MAL()
-#params = ["title","synopsis","genres","related_anime"]
+params = ["title","synopsis","genres","related_anime"]
 # Cowboy Bebop is ID: 1
 #print(api.request(1,params))
 A =  api.request(1,params)
@@ -25,6 +25,10 @@ def home():
 @views.route("/next")
 def next():
     code = request.args['code']
-    session["access_token"] = api.getToken(code, verifier)
+    session["access_token"] = api.getToken(code, verifier, "http://localhost:8000/next")
     print(session["access_token"])
-    return code
+    return redirect(url_for("main.authorized"))
+
+@views.route("/authorized")
+def authorized():
+    return redirect("https://myanimelist.net/")

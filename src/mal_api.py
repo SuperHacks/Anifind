@@ -1,10 +1,6 @@
 import json 
 import requests 
 import os
-import secrets
-import base64
-import hashlib
-import re
 import urllib.parse
 from pathlib import Path
 import time
@@ -15,6 +11,7 @@ max_retries = 3
 class MAL:
     def __init__(self):
         self.CLIENT_ID = os.getenv("MAL_CLIENT_ID")
+        self.CLIENT_SECRET = os.getenv("MAL_CLIENT_SECRET")
         self.URL = "https://api.myanimelist.net/v2/anime/"
         self.AUTH = "https://myanimelist.net/v1/oauth2/authorize?"
     
@@ -60,16 +57,18 @@ class MAL:
 
         return url
     
-    def getToken(self, code, verifier):
+    def getToken(self, code, verifier, redirectURL):
 
         head = {
             "Content-Type": "application/x-www-form-urlencoded"
         }
         body = {
             "client_id": self.CLIENT_ID,
+            "client_secret": self.CLIENT_SECRET,
             "code" : code,
             "code_verifier": verifier,
             "grant_type" : "authorization_code",
+            "redirect_uri": redirectURL
         }
         req = requests.post("https://myanimelist.net/v1/oauth2/token", data=body, headers=head)
         resp = json.loads(req.text)
