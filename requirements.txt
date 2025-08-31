@@ -1,0 +1,4 @@
+flask
+load_dotenv
+python-dotenv
+requests
