@@ -7,10 +7,11 @@ import hashlib
 import re
 import urllib.parse
 from pathlib import Path
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
-
+max_retries = 3
 class MAL:
     def __init__(self):
         self.CLIENT_ID = os.getenv("MAL_CLIENT_ID")
@@ -24,10 +25,22 @@ class MAL:
         """
         # No OAuth2
         link = self.URL + str(anime_id) + "?fields=" + ",".join(params)
-        response = requests.get(link, headers = {'X-MAL-CLIENT-ID': self.CLIENT_ID})
-
+        
+        for attempt in range(max_retries):
+            try:
+                response = requests.get(link, headers = {'X-MAL-CLIENT-ID': self.CLIENT_ID},timeout=10)
+                response.raise_for_status()
+                print("Success!")
+                break  # exit loop if successful
+            except requests.exceptions.Timeout:
+                print(f"Timeout, retrying ({attempt+1}/{max_retries})...")
+                time.sleep(60)  # wait 
+            except requests.exceptions.RequestException as e:
+                #print(f"Other error: {e}")
+                break
         if response.status_code == 200:
             data = response.json()
+            return data
         else:
             print(f"Error: {response.status_code}")
             print(response)
@@ -62,4 +75,3 @@ class MAL:
         resp = json.loads(req.text)
         return resp["access_token"]
 
-    

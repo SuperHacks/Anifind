@@ -7,6 +7,8 @@ api = MAL()
 #params = ["title","synopsis","genres","related_anime"]
 # Cowboy Bebop is ID: 1
 #print(api.request(1,params))
+A =  api.request(1,params)
+print(A['genres'])
 
 
 views = Blueprint(__name__, "views")
