@@ -70,7 +70,21 @@ class MAL:
             "grant_type" : "authorization_code",
             "redirect_uri": redirectURL
         }
+        #Need to change flow so that new token is only grabbed for first time users otherwise use refresh token to refresh
         req = requests.post("https://myanimelist.net/v1/oauth2/token", data=body, headers=head)
         resp = json.loads(req.text)
         return resp["access_token"]
+    
+    def getUserList(self, at):
+        auth_header = {
+            "Authorization": "Bearer {}".format(at) 
+        }
+        params = {
+            "status": "completed",
+            "limit": 1000
+        }
+        endpoint = "https://api.myanimelist.net/v2/users/@me/animelist?"
+        resp = requests.get(endpoint, headers=auth_header, params=params)
+        animeList = json.loads(resp.text)
+        return animeList
 

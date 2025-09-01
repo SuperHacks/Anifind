@@ -31,4 +31,7 @@ def next():
 
 @views.route("/authorized")
 def authorized():
+    at = session.get("access_token")
+    animeList = api.getUserList(at)
+    print (animeList['data'][:10])
     return redirect("https://myanimelist.net/")
