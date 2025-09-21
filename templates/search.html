@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniFind</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="../static/css/custom.css"/>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/static/images/Letter-A-logo-design-in-flat-design-on-transparent-background-PNG.png" alt="logo" width="60" height="" class="d-inline-block align-text-top">
+                <h1 class="d-inline-block align-text-top">AniFind</h1>
+            </a>
+            <div class="navbar-nav ms-auto d-flex">
+                <a class="nav-link" href="/go-to-home">Home</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="#">Customize</a>
+                <a class="nav-link" href="#">About</a>
+            </div>
+        </div>
+    </nav>
+    <main class="d-flex flex-column justify-content-center align-items-center min-vh-100">
+        <div class="container-fluid">
+            <h1 class="display-2 text-center text-white">AniFind</h1>
+            <p class="lead text-center text-white">Search for what you're looking for and we'll provide you with some anime.</p>
+            <div class="search-container">
+                <input type="text" class="form-control search-input" placeholder="Search anything..." id="query">
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto mt-3">
+                <a href="/results"<button type="button" class="btn btn-primary">Search</button></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

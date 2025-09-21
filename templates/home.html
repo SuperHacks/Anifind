@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AniFind</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="../static/css/custom.css"/>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/static/images/Letter-A-logo-design-in-flat-design-on-transparent-background-PNG.png" alt="logo" width="60" height="" class="d-inline-block align-text-top">
+                <h1 class="d-inline-block align-text-top">AniFind</h1>
+            </a>  
+            <div class="navbar-nav ms-auto d-flex">
+                <a class="nav-link" href="/go-to-home">Home</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="#">Customize</a>
+                <a class="nav-link" href="#">About</a>
+            </div>
+     
+        </div>
+    </nav>
+    <main class="d-flex flex-column justify-content-center align-items-center min-vh-100">
+        <div class="container-fluid">
+            <h1 class="display-3 text-center text-white">Search for new Anime</br>Personalized to your taste.</h1>
+            <p class="lead text-center text-white">Login to your MyAnimeList account my clicking the button below to try it out today!</p>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="/login"<button type="button" class="btn btn-primary">Login</button></a>
+        </div>
+    </main>
+</body>
+</html>
